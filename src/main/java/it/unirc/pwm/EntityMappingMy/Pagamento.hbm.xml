@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- ORDINE (1,1) HA (1,1) PAGAMENTO - ONE TO ONE BIDIREZIONALE - GUARDARE Ordine.hbm.xml -->
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+    <class name="Pagamento">
+        <id name="idordine">
+            <generator class="assigned" />
+        </id>
+        <property name="datapagamento" type="date"/>
+        <property name="importo" type="double"/>
+       <one-to-one name="ordine" cascade="all"/>  
+        
+        <!-- PAGAMENTO - CARTA - CONTRASSEGNO - EREDITARIETA' TABLE PER CLASS -->
+        <union-subclass name="Cartadicredito" extends="Pagamento">
+        
+        	  <property name="nomeintestatario"></property>
+        	  <property name="cognomeintestatario"></property>
+        	  
+        </union-subclass>
+        
+        <union-subclass name="Contrassegno" extends="Pagamento">
+        	 <property name="firmatario" /> 
+        	 <property name="imgfirma" /> 
+        </union-subclass>
+        
+    </class>
+</hibernate-mapping>

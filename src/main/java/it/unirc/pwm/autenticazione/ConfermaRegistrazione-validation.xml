@@ -1,0 +1,48 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+
+	
+		<!-- Esempio 5 - Validazione con validation.  -->
+	<field name="cliente.email">
+		<field-validator type="requiredstring">
+			<message> 
+			 Devi inserire l'email. </message>
+		</field-validator>		
+		<field-validator type="email">
+			<message>L'email ${cliente.email} non è valida</message>
+		</field-validator>
+	</field>
+
+	
+	<field name="account.password">
+		<field-validator type="requiredstring">
+			<message key="password.required"></message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">10</param>
+			<param name="minLength">6</param>
+			<message>La password deve essere compresa tra 6 e 10 caratteri.
+			</message>
+		</field-validator>
+		<field-validator type="passwordstrenght">
+			<message>La password deve contenere caratteri minuscoli, maiuscoli e
+				numeri.</message>
+		</field-validator>
+	</field>
+	
+	<field name="cliente.nome">
+		<field-validator type="nomestrenght">
+			<message>Il nome non può contenere numeri. </message>
+		</field-validator>
+	</field>
+	
+	
+	
+	<field name="cliente.cognome">
+		<field-validator type="cognomestrenght">
+			<message>Il cognome non può contenere numeri. </message>
+		</field-validator>
+	</field>
+	
+</validators>

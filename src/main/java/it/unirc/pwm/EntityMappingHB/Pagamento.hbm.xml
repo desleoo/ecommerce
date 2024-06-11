@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 6 ott 2022, 11:41:34 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Pagamento" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Pagamento">
+        <id name="idordine" type="int">
+            <column name="idordine"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="datapagamento" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="datapagamento" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="importo" optimistic-lock="true" type="double" unique="false">
+            <column name="importo" not-null="true" precision="22" scale="0"/>
+        </property>
+        
+      <!-- ONE TO ONE BIDIREZIONALE CON ORDINE -->  
+      <one-to-one class="it.unirc.pwm.EntityMappingHB.Ordine" constrained="true" embed-xml="true" name="ordine" cascade="all"/>
+        
+       <!-- GENERALIZZAZIONE TABLE PER CLASS DIELL'ENTITA' CONTRASSEGNO-->
+       <union-subclass name="it.unirc.pwm.EntityMappingHB.Contrassegno" extends="Pagamento">
+			<property name="firmatario"/>
+		</union-subclass>
+       <!--  -->
+       
+       <!-- GENERALIZZAZIONE TABLE PER CLASS DIELL'ENTITA' CARTA DI CREDITO -->
+        <union-subclass name="it.unirc.pwm.EntityMappingHB.Cartadicredito" extends="Pagamento">
+			<property name="nomeintestatario"/>
+			<property name="cognomeintestatario"/>
+			<property name="numeroCarta"/>
+			<property name="scadenza"/>
+			<property name="cvv"/>
+		</union-subclass>
+       <!--  -->
+       
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Corriere" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Corriere">
+        <id name="idordine" type="int">
+            <column name="IDORDINE"/>
+            <generator class="foreign">
+                <param name="property">spedizione</param>
+            </generator>
+        </id>
+        <one-to-one class="it.unirc.pwm.EntityMappingHB.Spedizione" constrained="true" embed-xml="true" name="spedizione"/>
+        <property generated="never" lazy="false" name="spesaspedizione" optimistic-lock="true" type="int" unique="false">
+            <column name="spesaspedizione" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="dataspedizione" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="dataspedizione" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="dataconsegna" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="dataconsegna" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

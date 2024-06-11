@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Cartadicredito" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Cartadicredito">
+        <id name="idordine" type="int">
+            <column name="idordine"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="datapagamento" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="datapagamento"/>
+        </property>
+        <property generated="never" lazy="false" name="importo" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="importo" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="nomeintestatario" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="nomeintestatario"/>
+        </property>
+        <property generated="never" lazy="false" name="cognomeintestatario" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="cognomeintestatario"/>
+        </property>
+    </class>
+</hibernate-mapping>

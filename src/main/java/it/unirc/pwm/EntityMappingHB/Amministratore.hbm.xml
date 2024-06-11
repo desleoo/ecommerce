@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 6 ott 2022, 11:41:34 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Amministratore" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Amministratore">
+           
+           
+        <!-- ONE TO ONE BIDIREZIONALE CON CLIENTE -->
+        <id name="idcliente" type="int">
+            <column name="idcliente"/>
+            <generator class="foreign">
+                <param name="property">cliente</param>
+            </generator>
+        </id>
+        <one-to-one class="it.unirc.pwm.EntityMappingHB.Cliente" constrained="true" embed-xml="true" name="cliente"/>
+        <property generated="never" lazy="false" name="nomeamministratore" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="nomeamministratore" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="cognomeamministratore" optimistic-lock="true" type="string" unique="false">
+            <column length="35" name="cognomeamministratore" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="codicefiscale" optimistic-lock="true" type="string" unique="false">
+            <column length="16" name="codicefiscale" not-null="true" unique="true"/>
+        </property>
+        <!--  -->
+        
+        
+    </class>
+</hibernate-mapping>

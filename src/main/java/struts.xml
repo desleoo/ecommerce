@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts
+Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+  
+   <constant name="struts.action.extension" value=""/> 
+		<package name="default" namespace="/" extends="struts-default">
+		 
+			<action name="Homepage" class="it.unirc.pwm.acquistaProdotti.VisualizzaP">
+				<result name="success">/public/Homepage.jsp</result>
+				<result name="input">/error/Error.jsp</result>
+			</action>
+			
+			
+		</package>	
+		
+		
+		
+		
+ 	<include file="it/unirc/pwm/esempio1/esempio1.xml"/>
+ 	<include file="it/unirc/pwm/autenticazione/autenticazione.xml"/>
+    <include file="it/unirc/pwm/acquistaProdotti/acquisto.xml"/>
+ 	<include file="it/unirc/pwm/navigazione/navigation.xml"/>
+ 	<include file="it/unirc/pwm/navigazione/navigationad.xml"/>
+ 	<include file="it/unirc/pwm/navigazione/navigationcl.xml"/>
+ 	
+ 	
+
+
+</struts>

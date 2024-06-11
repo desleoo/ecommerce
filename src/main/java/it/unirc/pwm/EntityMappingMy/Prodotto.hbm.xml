@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+	<class name="Prodotto">
+		<id name="idprodotto">
+			<generator class="native" />
+		</id>
+		<property name="nomep" />
+		<property name="descrizionep" />
+		<property name="immaginep" />
+		<property name="prezzo" />
+		
+		<!-- ORDINE (1,N) - (0,N) PRODOTTO - MANY TO MANY -->
+		<set name="Ordine" table="ORDINE_PRODOTTO" cascade="save-update">
+			<key column="PRODOTTO" /> <!-- devo indicare il nome della colonna della tabella di join usata per 
+				riferire lo insegnamento -->
+			<many-to-many column="ORDINE" class="Ordine" /><!-- devo 
+				indicare il nome della colonna della tabella di join usata per riferire lo 
+				studente -->
+		</set>
+	</class>
+</hibernate-mapping>

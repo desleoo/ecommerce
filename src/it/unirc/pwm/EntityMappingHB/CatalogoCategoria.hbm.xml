@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.CatalogoCategoria" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="CATALOGO_CATEGORIA">
+        <composite-id class="it.unirc.pwm.EntityMappingHB.CatalogoCategoriaId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="catalogo" type="int">
+                <column name="CATALOGO"/>
+            </key-property>
+            <key-property name="categoria" type="int">
+                <column name="CATEGORIA"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="it.unirc.pwm.EntityMappingHB.Catalogo" embed-xml="true" fetch="select" insert="false" name="catalogo" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="CATALOGO" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="it.unirc.pwm.EntityMappingHB.Categoria" embed-xml="true" fetch="select" insert="false" name="categoria" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="CATEGORIA" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

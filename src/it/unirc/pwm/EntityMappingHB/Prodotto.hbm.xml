@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Prodotto" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Prodotto">
+        <id name="idprodotto" type="java.lang.Integer">
+            <column name="idprodotto"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="it.unirc.pwm.EntityMappingHB.Categoria" embed-xml="true" fetch="select" insert="true" name="categoria" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="PRODOTTO" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nomep" optimistic-lock="true" type="string" unique="false">
+            <column name="nomep" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="immaginep" optimistic-lock="true" type="string" unique="false">
+            <column name="immaginep" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="descrizionep" optimistic-lock="true" type="string" unique="false">
+            <column length="16777215" name="descrizionep" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="prezzo" optimistic-lock="true" type="double" unique="false">
+            <column name="prezzo" not-null="true" precision="22" scale="0"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="false" lazy="true" mutable="true" name="ordines" optimistic-lock="true" sort="unsorted" table="ORDINE_PRODOTTO">
+            <key on-delete="noaction">
+                <column name="PRODOTTO" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="it.unirc.pwm.EntityMappingHB.Ordine" not-found="exception" unique="false">
+                <column name="ORDINE" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

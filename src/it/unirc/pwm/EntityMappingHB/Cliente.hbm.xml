@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Cliente" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Cliente">
+        <id name="idcliente" type="java.lang.Integer">
+            <column name="idcliente"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="nome" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="nome" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="cognome" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="cognome" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="datanascita" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="datanascita" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="telefono" optimistic-lock="true" type="int" unique="false">
+            <column name="telefono" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="email" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="indirizzoCitta" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="indirizzo_citta" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="indirizzoVia" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="indirizzo_via"/>
+        </property>
+        <property generated="never" lazy="false" name="indirizzoCivico" optimistic-lock="true" type="string" unique="false">
+            <column length="5" name="indirizzo_civico"/>
+        </property>
+        <property generated="never" lazy="false" name="indirizzoCap" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="indirizzo_cap"/>
+        </property>
+        <property generated="never" lazy="false" name="indirizzoDescizione" optimistic-lock="true" type="string" unique="false">
+            <column name="indirizzo_descizione"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ordines" optimistic-lock="true" sort="unsorted" table="Ordine">
+            <key on-delete="noaction">
+                <column name="cliente" not-null="true"/>
+            </key>
+            <one-to-many class="it.unirc.pwm.EntityMappingHB.Ordine" embed-xml="true" not-found="exception"/>
+        </set>
+        <one-to-one class="it.unirc.pwm.EntityMappingHB.Amministratore" constrained="false" embed-xml="true" name="amministratore"/>
+        <one-to-one class="it.unirc.pwm.EntityMappingHB.Account" constrained="false" embed-xml="true" name="account"/>
+    </class>
+</hibernate-mapping>

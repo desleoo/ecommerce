@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+	<joined-subclass name="CorriereExp" extends="Spedizione">
+		<key>
+			<column name="IDORDINE" />
+		</key>
+		<property name="spesaspedizionExp" />
+		<property name="dataspedizioneExp" />
+		<property name="dataconsegnaExp" />
+	</joined-subclass>
+</hibernate-mapping>

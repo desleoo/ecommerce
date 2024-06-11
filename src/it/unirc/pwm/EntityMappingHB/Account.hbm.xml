@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Account" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Account">
+        <id name="idcliente" type="int">
+            <column name="idcliente"/>
+            <generator class="foreign">
+                <param name="property">cliente</param>
+            </generator>
+        </id>
+        <one-to-one class="it.unirc.pwm.EntityMappingHB.Cliente" constrained="true" embed-xml="true" name="cliente"/>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="username" not-null="true" unique="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

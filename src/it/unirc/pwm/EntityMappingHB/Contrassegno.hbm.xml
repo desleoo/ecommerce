@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22 mar 2022, 17:25:01 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ecommerce" dynamic-insert="false" dynamic-update="false" mutable="true" name="it.unirc.pwm.EntityMappingHB.Contrassegno" optimistic-lock="none" polymorphism="implicit" select-before-update="false" table="Contrassegno">
+        <id name="idordine" type="int">
+            <column name="idordine"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="datapagamento" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="datapagamento" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="importo" optimistic-lock="true" type="double" unique="false">
+            <column name="importo" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="firmatario" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="firmatario" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="imgfirma" optimistic-lock="true" type="string" unique="false">
+            <column name="imgfirma" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

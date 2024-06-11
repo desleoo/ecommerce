@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+	<class name="Cartadicredito">
+	
+		<composite-id name="idcarta" class="Cartadicreditoid">
+			
+			<key-property name="codicecarta" type="int">
+				<column name="codicecarta" />
+			</key-property>
+			
+			<key-property name="datascadenza" type="date">
+				<column name="datascadenza" />
+			</key-property>
+			
+			<key-property name="ccn" type="int">
+				<column name="ccn" />
+			</key-property>
+			
+		</composite-id>
+		
+		
+		
+		
+	</class>
+</hibernate-mapping>
