@@ -12,7 +12,7 @@
 
 	<body>
 	
-	
+<!-- MODIFICARE LA SCHERMATA DI AVVIO -->	
 	<main>
 	<div class="preloader">
 		<div class="preloader__square"></div>
