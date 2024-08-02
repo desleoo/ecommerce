@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+        
+       
+<!-- 
+Order in struts.xml matters:
+
+result-types?
+interceptors?
+default-interceptor-ref?
+default-action- ref?
+default-class-ref?
+global-results?
+global-exception-mappings?
+action* 
+-->
+
+<struts>
+		
+    <package name="autenticazione"  extends="json-default" namespace="/autenticazione">
+   
+    <action name="homepage" >
+           	<result type="redirect">/Homepage.action</result>
+		</action>
+		
+		<action name="LoginForm">
+           		<result>/autenticazione/LoginForm.jsp</result>
+		</action>	
+     
+     	<action name="VerificaLogin" class="it.unirc.pwm.autenticazione.Login">
+     			<interceptor-ref name="defaultStack" />
+     			<interceptor-ref name="timer" /> 
+     			<interceptor-ref name="logger" />
+          <result type="redirect">/autenticazione/secure/Autenticato.action</result>
+		  <result name="input">/autenticazione/LoginForm.jsp</result>
+		</action>
+		
+		<action name="LoginForm_mobile" class="it.unirc.pwm.autenticazione.Login" method="mobile">
+			<result type="json" name="success">  
+				<param name="excludeProperties">password, session, username, resultCliente\[\d+\].amministratore, resultCliente\[\d+\].account,resultCliente\[\d+\].ordines</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="Logout">
+           		<result type="redirect">/autenticazione/secure/Logout.action</result>
+		</action>
+		
+		<action name="RegistrazioneForm">
+           		<result>/autenticazione/RegistrazioneForm.jsp</result>
+		</action>
+		
+		<action name="EliminaP">
+           		<result>/autenticazione/GestioneProdotti.jsp</result>
+		</action>
+				
+		<action name="ConfermaRegistrazione" class="it.unirc.pwm.autenticazione.ConfermaRegistrazione">
+           		<result name="success">/autenticazione/ConfermaRegistrazione.jsp</result>
+           		<result name="input">/autenticazione/RegistrazioneForm.jsp</result>
+		</action>
+		
+		<action name="profile" >
+           			<result type="redirect">/autenticazione/secure/profile.action</result>
+			</action>
+					
+	</package>
+				 
+				 
+		
+				 
+	<package name="autenticazioneSecure"  extends="struts-default" namespace="/autenticazione/secure">
+			
+			
+			<interceptors>
+				<!-- definizione di un nuovo interceptor -->
+					<interceptor name="authenticationInterceptor" class="it.unirc.pwm.autenticazione.util.AuthenticationInterceptor" />
+
+				<!-- definizione di un nuovo stack di interceptor -->
+				<interceptor-stack name="secureStack">
+					<interceptor-ref name="authenticationInterceptor" />
+					<interceptor-ref name="defaultStack" />
+				</interceptor-stack>
+			</interceptors>
+			
+			<default-interceptor-ref name="secureStack" />
+
+			<global-results>
+			
+					<result name="login" type="redirect">/autenticazione/LoginForm.jsp</result>
+					
+					<result name="genericException">/error/Error.jsp</result> <!-- E' il global result dell'eccezione (esempio7) -->
+					
+					<result name="exceptionImgProduct">/error/Error.jsp</result> <!-- E' il global result dell'eccezione (esempio7) -->
+					
+			</global-results>	
+			
+			
+		<!-- ESEMPIO 7 - CREO UNA ECCEZIONE -->
+		
+			<global-exception-mappings> 
+			
+			<exception-mapping exception="java.lang.Exception" result="genericException" />
+				
+			<exception-mapping exception="java.io.IOException" result="exceptionImgProduct" /> 
+			
+				
+			</global-exception-mappings>
+	
+			<action name="Autenticato" class="it.unirc.pwm.autenticazione.Autenticato">
+					<result name="success">/private/Autenticato.jsp</result>
+			</action>
+			
+			<action name="profile" >
+           			<result type="redirect">/autenticazione/secure/Autenticato.action</result>
+			</action>
+		
+			<action name="homepage" >
+           	<result type="redirect">/Homepage.action</result>
+			</action>
+		
+			<action name="Logout" class="it.unirc.pwm.autenticazione.Logout">
+           		<result type="redirect">/Homepage.action</result>
+			</action>
+		
+				<action name="modificaA">
+           			<result type="redirect">/autenticazione/secure/modificaAccount.action</result>
+				</action>
+			
+				<action name="modificaAccount" class="it.unirc.pwm.gestioneAccount.ModificaAccount">
+           			<result>/gestioneUser/GestioneAccount.jsp</result>
+				</action>
+			
+				<action name="SalvaModificaA" class="it.unirc.pwm.gestioneAccount.SalvaAccount">
+           			<result type="redirect">profile.action</result>
+           			<result name="input">/gestioneUser/GestioneAccount.jsp</result>
+		    	</action>
+		    	
+				<action name="modificaC">
+           			<result type="redirect">/autenticazione/secure/modificaCliente.action</result>
+				</action>
+			
+				<action name="modificaCliente">
+           			<result>/gestioneUser/GestioneCliente.jsp</result>
+				</action>
+			
+				<action name="SalvaInfoCliente" class="it.unirc.pwm.gestioneAccount.SalvaCliente">
+           			<result  type="redirect">profile.action</result>
+           			<result name="input">/gestioneUser/GestioneCliente.jsp</result>
+				</action>
+			
+				<action name="SalvaModificaIndirizzo" class="it.unirc.pwm.gestioneAccount.ModificaIndirizzo">
+           			<result  type="redirect">profile.action</result>
+           			<result name="input">/gestioneUser/GestioneCliente.jsp</result>
+				</action>
+			
+			<!--   
+				<action name="SalvaAggiungiIndirizzo" class="it.unirc.pwm.gestioneAccount.SalvaIndirizzo">
+           			<result  type="redirect">profile.action</result>
+           			<result name="input">/error/Error.jsp</result>
+				</action>
+			-->
+				<action name="gestioneO">
+           			<result type="redirect">/autenticazione/secure/gestioneOrdini.action</result>
+				</action>
+			
+				<action name="gestioneOrdini" class="it.unirc.pwm.gestioneAccount.VisualizzaOrdini">
+           			<result>/gestioneUser/GestioneOrdini.jsp</result>
+				</action>
+			
+				<action name="gestioneP">
+           			<result type="redirect">/autenticazione/secure/gestioneProdotti.action</result>
+				</action>
+			
+				<action name="gestioneProdotti" class="it.unirc.pwm.acquistaProdotti.VisualizzaP">
+           			<result name="success">/gestioneAdmin/GestioneProdotti.jsp</result>
+				</action>
+			
+				<action name="visualizzaInfoP" class="it.unirc.pwm.gestioneAdmin.VisualizzaInfoP">
+           			<result name="success">/gestioneAdmin/InfoProdotto.jsp</result>
+				</action>
+			
+				<action name="gestioneC">
+           			<result type="redirect">/autenticazione/secure/gestioneClienti.action</result>
+				</action>
+			
+				<action name="gestioneClienti" class="it.unirc.pwm.gestioneAdmin.VisualizzaClienti">
+           			<result name="success">/gestioneAdmin/GestioneUtenti.jsp</result>
+				</action>
+		
+				<action name="gestioneOr">
+           			<result type="redirect">/autenticazione/secure/gestioneOrdiniA.action</result>
+				</action>
+			
+				<action name="gestioneOrdiniA" class="it.unirc.pwm.gestioneAdmin.VisualizzaOrdini">
+           			<result>/gestioneAdmin/GestioneOrdiniA.jsp</result>
+				</action>
+				
+				<action name="gestioneS">
+           			<result type="redirect">/autenticazione/secure/gestioneSpedizioni.action</result>
+				</action>
+			
+				<action name="gestioneSpedizioni" class="it.unirc.pwm.gestioneAdmin.VisualizzaSpedizioni">
+           			<result>/gestioneAdmin/GestioneSpedizione.jsp</result>
+				</action>
+			
+				<action name="riepilogoAcquisto" class="it.unirc.pwm.acquistaProdotti.riepilogoAcquisto">
+           			<result>/private/riepilogoAcquisto.jsp</result>
+				</action>
+
+				<action name="ordineConfermato" class="it.unirc.pwm.acquistaProdotti.procediPagamento">
+           			<result name="SUCCESSCONTR">/private/confermatoOrdine.jsp</result>
+           			<result name="SUCCESSCARTA" type="redirect">/autenticazione/secure/effettuaPagamento.action</result>
+		           	<result name="SUCCESSPAG">/private/confermatoOrdine.jsp</result>
+				</action>
+			
+				<action name="SalvaModificaP" class="it.unirc.pwm.gestioneAdmin.ModificaProdotto">
+           			<result type="redirect">/autenticazione/secure/gestioneProdotti.action</result>
+           			<result name="input">/gestioneAdmin/InfoProdotto.jsp</result>
+           			
+				</action>
+		
+				<action name="AggiungiP" >
+           			<result>/gestioneAdmin/AggiungiProdotto.jsp</result>
+				</action>
+			
+				<action name="effettuaPagamento">
+           			<result>/private/pagamentoCarta.jsp</result>
+				</action>
+			
+
+				<action name="SalvaP" class="it.unirc.pwm.gestioneAdmin.SalvaProdotto">
+				
+         			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">image/png,image/gif,image/jpeg,image/jpg</param>
+					</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+           			<result type="redirect">/autenticazione/secure/gestioneProdotti.action</result>
+           			<result name="input">/gestioneAdmin/AggiungiProdotto.jsp</result>
+           			
+				</action> 
+			
+	</package>
+
+	<!-- PACKAGE PER ANDROID -->
+	<package name="mobile"  extends="json-default" namespace="/mobile">
+	
+ 		<action name="GetOrdini_mobile" class="it.unirc.pwm.Mobile.GetOrdiniCliente">
+			<result type="json" name="success">  
+				<param name="excludeProperties">idcliente, ordini\[\d+\].cliente, ordini\[\d+\].pagamento, ordini\[\d+\].prodottos, prodotti\[\d+\].ordines</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+	<!--  -->	
+	</package>
+	
+	
+</struts>

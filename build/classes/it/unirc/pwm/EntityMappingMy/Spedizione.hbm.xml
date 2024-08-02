@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+    <class name="Spedizione">
+        <id name="idordine">
+			<generator class="foreign" >
+				<param name="property">ordine</param>
+			</generator>
+        </id>
+        <property name="nomecorriere"/>
+        <property name="datapartenza"/>
+        <property name="dataconsegna"/>
+
+        <one-to-one name="ordine" constrained="true" cascade="save-update"/>  
+    </class>
+</hibernate-mapping>

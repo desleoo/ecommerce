@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?> <!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> 
+<hibernate-configuration>
+
+<session-factory>
+<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property> 
+<property name="connection.url">jdbc:mysql://localhost:3306/ecommerce</property> 
+<property name="connection.username">root</property>
+<property name="connection.password">root</property>
+<property name="connection.useSSL">false</property>
+<property name="hibernate.hbm2ddl.auto">update</property>
+<property name="show_sql">false</property>
+<property name="connection.serverTimezone">Europe/Rome</property>
+
+<!--  
+<mapping resource="it/unirc/pwm/EntityMappingMy/Cliente.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Ordine.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Pagamento.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Prodotto.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Account.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Cartadicredito.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Amministratore.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/Spedizione.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingMy/CorriereExp.hbm.xml"/> 
+
+-->
+
+ 
+<mapping resource="it/unirc/pwm/EntityMappingHB/Cliente.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Ordine.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Pagamento.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Prodotto.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Account.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Amministratore.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/Spedizione.hbm.xml"/>
+<mapping resource="it/unirc/pwm/EntityMappingHB/CorriereExp.hbm.xml"/>
+
+
+
+
+</session-factory>
+
+</hibernate-configuration>

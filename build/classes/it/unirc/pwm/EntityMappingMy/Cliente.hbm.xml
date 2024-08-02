@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+
+	<!-- CLIENTE (0,1) HA (1,1) INDIRIZZO - ONE-TO-ONE COMPOSED -->
+	<class name="Cliente">
+		<id name="idcliente">
+			<generator class="native" />
+		</id>
+		<property name="nome" />
+		<property name="cognome" />
+		<property name="datanascita" />
+		<property name="telefono" />
+		<property name="email" />
+
+			<component name="indirizzo" class="Indirizzo">
+				<property name="citta" column="indirizzo_citta" type="string"/>
+				<property name="via" column="indirizzo_via" type="string"/>
+				<property name="civico" column="indirizzo_civico" type="string"/>
+				<property name="cap" column="indirizzo_cap" type="int"/>
+				<property name="descrizione" column="indirizzo_descizione" type="string"/>
+			</component>
+        <one-to-one name="carrello" constrained="true" cascade="all"/>  
+			
+	</class>
+</hibernate-mapping>

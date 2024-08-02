@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingMy">
+
+	
+	<class name="Ordine"> 
+		<id name="idordine"> 
+			<generator class="foreign">   				   
+			<param name="property">pagamento</param>    
+		    </generator>
+		    
+		</id>
+		<discriminator column="stato" type="string" /> 	<!-- EREDITARIETA' SINGLE TABLE -->
+		<property name="dataordine" type="date"/>
+		
+		
+	<!-- ORDINE (1,1) - (1,1) PAGAMENTO - ONE TO ONE BIDIREZIONALE - GUARDARE Pagamento.hbm.xml -->
+		<one-to-one name="pagamento" constrained="true" cascade="save-update"/>   
+		    
+	
+			
+	<!-- ORDINE (1,N) - (0,N) PRODOTTO - MANY TO MANY -->
+		<set name="Prodotto" table="ORDINE_PRODOTTO" cascade="save-update">
+			<key column="ORDINE" /> <!-- devo indicare il nome della colonna della tabella di join usata per 
+				riferire lo insegnamento -->
+			<many-to-many column="PRODOTTO" class="Prodotto" /><!-- devo 
+				indicare il nome della colonna della tabella di join usata per riferire lo 
+				studente -->
+				
+		</set>
+			
+		<!-- CLIENTE (0,1) CONFERMA (1,1) ORDINE - MANY TO ONE -->
+		<many-to-one name="cliente" not-null="false" cascade="save-update" lazy="false"/> <!-- provare aggiungendo   cascade="save-update" --><!-- provare aggiungendo  lazy="false" -->
+			
+		<!-- ORDINE CONFERMATO/ANNULLATO - EREDITARIETA' SINGLE TABLE -->
+		
+			<subclass name="Confermato" discriminator-value="CONFERMATO">
+				<property name="dataConfermaOrdine" type="date" />
+			</subclass>
+			<subclass name="Annullato" discriminator-value="ANNULLATO">
+				<property name="dataAnnulloOrdine" type="date" />
+			</subclass>	
+		
+		
+		
+	</class>
+	</hibernate-mapping>

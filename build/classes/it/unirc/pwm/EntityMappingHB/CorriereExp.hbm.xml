@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 6 ott 2022, 11:41:34 by Hibernate Tools 5.5.7.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="it.unirc.pwm.EntityMappingHB"  auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+        
+        <!-- GENERALIZZAZIONE JOINED CON SPEDIZIONE --> 
+        <joined-subclass name="CorriereExp" extends="it.unirc.pwm.EntityMappingHB.Spedizione">
+        <key>
+			<column name="idordine" />
+		</key>
+        	<property generated="never" lazy="false" name="prezzoExtra" optimistic-lock="true" type="double" unique="false">
+            <column length="10" name="prezzoExtra" not-null="true"/>
+        	</property>
+        </joined-subclass>
+        <!--  -->    
+       
+</hibernate-mapping>

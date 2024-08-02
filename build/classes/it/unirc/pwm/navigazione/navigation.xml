@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+		
+    <package name="navigation"  extends="struts-default" namespace="/">
+    
+		<action name="homepage" >
+           	<result type="redirect">/Homepage.action</result>
+		</action>
+		
+		<action name="profile"   >
+           	<result type="redirect">/autenticazione/profile.action</result>
+		</action>
+		
+		<action name="Logout"   >
+           	<result type="redirect">/autenticazione/Logout.action</result>
+		</action>
+			
+	</package>
+</struts>
+				
